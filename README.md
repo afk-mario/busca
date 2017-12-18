@@ -2,7 +2,7 @@
 Extension search links on reddit or more
 
 <p align="center">
-  <img src="https://github.com/afk_mcz/ligo_extension/blob/master/src/img/512icon_dark.png" alt="Logo"/>
+  <img src="https://github.com/afk-mcz/busca.afk/blob/master/dist/img/128icon_dark.png" alt="Logo"/>
 </p>
 
 Firefox extension to search and list reddit submissions of the currently focused page.
