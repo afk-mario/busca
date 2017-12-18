@@ -1,0 +1,8 @@
+.message {
+  padding: var(--margin);
+}
+
+.message .wrapper {
+  padding: var(--margin);
+  border: 2px solid var(--light-blue);
+}

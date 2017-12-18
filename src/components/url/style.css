@@ -1,0 +1,6 @@
+.url {
+  display: flex;
+  padding: var(--half-margin);
+  width: 100%;
+  flex-flow: column nowrap;
+}

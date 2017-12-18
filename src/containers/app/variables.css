@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700');
+
+:root {
+  --font: 'Fira Mono', monospace;
+
+  /* sizes */
+  --border-division: 2px;
+  --tasks-height: 50px;
+  --mobile-size: 600px;
+
+  /* sizes */
+  --header-height: 50px;
+  --footer-height: 0px;
+  --sidebar-width: 25%;
+  --sidebar-min-width: 320px;
+
+  /* colors */
+
+  --white: #ffffff;
+  --black: #000000;
+  --dark-gray: #0c0c0d;
+  --medium-gray: #323234;
+  --light-gray: #b2b2b2;
+  --light-gray: #f2f2f2;
+  --blue: #0080ff;
+  --light-blue: #98d1cf;
+  --dark-blue: #185869;
+  --red: #c33126;
+  --green: #2ab38d;
+  --yellow: #f1b731;
+  --magenta: #7a7e9d;
+
+  /* margins */
+
+  --margin: 20px;
+  --half-margin: calc(var(--margin) * 0.5);
+  --double-margin: calc(var(--margin) * 2);
+
+  /* shadows */
+  --text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  --box-shadow-2: 0 7px 14px rgba(50, 50, 93, 0.1),
+    0 3px 6px rgba(0, 0, 0, 0.08);
+}

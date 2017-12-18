@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 250px;
+  background: var(--dark-gray);
+  color: var(--light-gray);
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+}

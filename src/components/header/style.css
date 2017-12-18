@@ -1,0 +1,12 @@
+#header {
+  background: var(--dark-gray);
+  border-bottom: 2px solid var(--medium-gray);
+  padding: var(--half-margin);
+}
+
+#header .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}

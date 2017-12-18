@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "busca.afk",
+  "description": "busca.afk extension",
+  "version": "1.0",
+  "icons": {
+    "16": "img/16icon_dark.png",
+    "19": "img/19icon_dark.png",
+    "38": "img/38icon_dark.png",
+    "48": "img/48icon_dark.png",
+    "128": "img/128icon_dark.png",
+    "256": "img/256icon_dark.png",
+    "512": "img/512icon_dark.png"
+  },
+  "browser_action": {
+    "default_icon": "img/512icon_light.svg",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html"
+  },
+  "permissions": [
+    "*://*.reddit.com/*",
+    "activeTab",
+    "tabs",
+    "storage",
+    "https://ajax.googleapis.com/"
+  ]
+}

@@ -1,13 +1,13 @@
+# busca.afk
+Extension search links on reddit or more
+
+<p align="center">
+  <img src="https://github.com/afk_mcz/ligo_extension/blob/master/src/img/512icon_dark.png" alt="Logo"/>
+</p>
+
 Firefox extension to search and list reddit submissions of the currently focused page.
 
-**[Download here](https://addons.mozilla.org/en-US/firefox/addon/reddit-submission-finder/)**
 
-Inspired by [Socialite](https://addons.mozilla.org/en-US/firefox/addon/socialite/) and [Reddit Check](https://github.com/hsbakshi/reddit-check)
+Inspired by [Reddit Submission Finder](https://addons.mozilla.org/en-US/firefox/addon/reddit-submission-finder/) , [Socialite](https://addons.mozilla.org/en-US/firefox/addon/socialite/) and [Reddit Check](https://github.com/hsbakshi/reddit-check)
 
 # Screenshot
-
-![](http://i.imgur.com/OCkO9wD.png)
-
-
-# To-do
-* Show error codes when request to reddit fails

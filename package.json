@@ -1,0 +1,63 @@
+{
+  "name": "busca.afk",
+  "version": "0.10.0",
+  "description": "busca.afk extension to search links on reddit or more",
+  "main": "js/script.js",
+  "scripts": {
+    "start:fox":
+      "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
+    "test": "eslint js/* && web-ext lint -s dist",
+    "build:chrome":
+      "crx pack dist -o build/ligo.crx && web-ext build -s dist -a build",
+    "build:fox": "web-ext build -s dist --overwrite-dest",
+    "build:dev": "webpack --watch --progress",
+    "build:prod": "webpack -p",
+    "precommit": "lint-staged"
+  },
+  "repository": "https://github.com/afk-mcz/reddit-submission-finder",
+  "keywords": ["extension", "arlefreak", "afk", "ligo", "link"],
+  "author": "AFK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/afk-mcz/reddit-submission-finder/issues"
+  },
+  "homepage": "https://github.com/afk-mcz/reddit-submission-finder#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,css}": [
+      "prettier --single-quote --trailing-comma es5 --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "crx": "^3.2.1",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
+    "is": "^3.2.1",
+    "lint-staged": "^6.0.0",
+    "prettier": "1.9.1"
+  },
+  "dependencies": {
+    "archiver": "^2.1.0",
+    "autoprefixer": "^7.2.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "choo": "^6.6.0",
+    "choo-devtools": "^2.2.0",
+    "css-loader": "^0.28.4",
+    "dotenv": "^4.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "postcss-loader": "^2.0.9",
+    "precss": "^2.0.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.4.1"
+  },
+  "peerDependencies": {}
+}

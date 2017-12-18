@@ -1,0 +1,16 @@
+.material {
+  color: var(light-gray);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 4px 0 0 0;
+}
+
+.material .material-icons {
+  font-size: 20px;
+}
+
+.material:hover {
+  color: var(--light-blue);
+  transform: translate(0, -1px);
+  box-shadow: var(--box-shadow-2);
+}

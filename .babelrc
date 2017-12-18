@@ -1,0 +1,10 @@
+{
+  "presets":[ "react", "env" ],
+  "plugins": ["transform-object-rest-spread"],
+  "compact" : false,
+  "env": {
+    "production": {
+      "plugins": [ "transform-react-remove-prop-types" ]
+    }
+  }
+}
