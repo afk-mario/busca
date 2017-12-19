@@ -16,7 +16,6 @@ export default function app(state) {
   return html`
     <body>
       ${Header(url)}
-      ${Url(url)}
       ${content}
       ${Results(state)}
     </body>

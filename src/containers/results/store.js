@@ -19,7 +19,7 @@ export default (
 
     getCurrentTabUrl(url => {
       mState.url = url;
-
+      // return;
       fetch('https://www.reddit.com/api/me.json', {
         mode: 'cors',
         credentials: 'include',
