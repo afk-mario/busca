@@ -12,8 +12,8 @@ export default (
 
   emitter.on('DOMContentLoaded', () => {
     emitter.on('results:got', results => {
-      console.log(results);
       mState.results = results;
+      emitter.emit('message:update', results.length > 0 ? '' : 'nothing found');
       emitter.emit('render');
     });
 
@@ -25,16 +25,12 @@ export default (
         credentials: 'include',
       })
         .then(handleErrors)
-        .then(response => {
-          console.log(response);
-          return response.json();
-        })
+        .then(response => response.json())
         .then(() => getAllSubmissions(url))
         .then(results => {
           emitter.emit('results:got', results);
-          console.log(results);
         })
-        .catch(error => console.log(error));
+        .catch(error => console.error(error));
 
       emitter.emit('render');
     });

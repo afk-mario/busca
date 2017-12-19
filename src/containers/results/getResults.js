@@ -18,7 +18,6 @@ function getEncodedStrings(url) {
 }
 
 function getAllURLVersions(URL) {
-  console.log('allVersion');
   let url = URL;
 
   if (url.indexOf('about:reader?url=') === 0) {
@@ -79,8 +78,6 @@ function getAllURLVersions(URL) {
 function handleResponse(jsonData) {
   const now = new Date();
   const timestamp = now.getTime();
-  console.log('Handle Response');
-  console.log(jsonData);
 
   const submissions = jsonData.data.children.map(entry => ({
     fullname: entry.data.name,
@@ -98,16 +95,14 @@ function handleResponse(jsonData) {
 }
 
 function getURLSubmissions(path) {
-  console.log('getURLSubmissions:');
   return fetch(path, { mode: 'cors', credentials: 'include' })
     .then(handleErrors)
     .then(response => response.json())
     .then(result => handleResponse(result))
-    .catch(error => console.log(error));
+    .catch(error => console.error(error));
 }
 
 export default function getAllSubmissions(url) {
-  console.log('getAllSubmissions');
   const redditUrls = getAllURLVersions(url);
   const allPromises = redditUrls.map(redditUrl => getURLSubmissions(redditUrl));
 

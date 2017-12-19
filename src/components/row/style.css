@@ -24,8 +24,7 @@
 }
 
 .row .score {
-  /* color: var(--green); */
-  margin: var(--half-margin) 0 var(--half-margin) 0;
+  margin: calc(var(--half-margin)/2) 0 calc(var(--half-margin)/2) 0;
 }
 .row .subreddit {
   color: var(--light-blue);

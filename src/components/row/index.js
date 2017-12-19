@@ -20,7 +20,7 @@ export default ({
       <span class="score">${score}</span>
       ${Arrow('down')}
     </div>
-    <a class="info-container" href="${link}" target="_blank">
+    <a class="info-container" href="${link}" target="_blank" rel="noopener noreferrer">
       <div class="main-info-container">
         <p class="title">${title}</p>
       </div>

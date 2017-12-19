@@ -5,7 +5,7 @@ function restoreOptions(emitter) {
   }
 
   function onError(error) {
-    console.log(`Error: ${error}`);
+    console.error(`Error: ${error}`);
   }
 
   const getting = browser.storage.local.get('token');
@@ -24,11 +24,6 @@ export default (
   mState.token = '';
 
   emitter.on('DOMContentLoaded', () => {
-    getCurrentTabUrl(url => {
-      mState.url = url;
-      emitter.emit('render');
-    });
-
     restoreOptions(emitter);
 
     emitter.on('url:update', url => {
@@ -39,9 +34,9 @@ export default (
     emitter.on('token:update', token => {
       mState.token = token;
 
-      if (typeof token === 'undefined' || !token) {
-        emitter.emit('message:update', 'no token');
-      }
+      // if (typeof token === 'undefined' || !token) {
+      //   emitter.emit('message:update', 'no token');
+      // }
 
       emitter.emit('render');
     });
@@ -50,5 +45,7 @@ export default (
       mState.message = message;
       emitter.emit('render');
     });
+
+    emitter.emit('message:update', 'loading ...');
   });
 };

@@ -1679,11 +1679,11 @@ var _app = __webpack_require__(33);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _store = __webpack_require__(64);
+var _store = __webpack_require__(67);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _store3 = __webpack_require__(65);
+var _store3 = __webpack_require__(68);
 
 var _store4 = _interopRequireDefault(_store3);
 
@@ -1692,7 +1692,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _choo2.default)();
 
 if (process.env.NODE_ENV !== 'production') {
-  var devtools = __webpack_require__(67);
+  var devtools = __webpack_require__(70);
   app.use(devtools());
 }
 app.use(_store4.default);
@@ -3605,7 +3605,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n    <body>\n      ', '\n      ', '\n      ', '\n    </body>\n  '], ['\n    <body>\n      ', '\n      ', '\n      ', '\n    </body>\n  ']);
+var _templateObject = _taggedTemplateLiteral(['\n    <body>\n      ', '\n      ', '\n    </body>\n  '], ['\n    <body>\n      ', '\n      ', '\n    </body>\n  ']);
 
 exports.default = app;
 
@@ -3621,17 +3621,13 @@ var _results = __webpack_require__(43);
 
 var _results2 = _interopRequireDefault(_results);
 
-var _header = __webpack_require__(52);
+var _header = __webpack_require__(58);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _message = __webpack_require__(58);
+var _message = __webpack_require__(64);
 
 var _message2 = _interopRequireDefault(_message);
-
-var _url = __webpack_require__(61);
-
-var _url2 = _interopRequireDefault(_url);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3643,9 +3639,9 @@ function app(state) {
 
 
   var messageBlank = typeof message === 'undefined' || !message;
-  var content = messageBlank ? '' : (0, _message2.default)(message);
+  var content = messageBlank ? (0, _results2.default)(state) : (0, _message2.default)(message);
 
-  return (0, _html2.default)(_templateObject, (0, _header2.default)(url), content, (0, _results2.default)(state));
+  return (0, _html2.default)(_templateObject, (0, _header2.default)(url), content);
 }
 
 /***/ }),
@@ -4418,20 +4414,8 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 function ResultsList(state) {
   var _state$results = state.results,
-      results = _state$results === undefined ? [{ link: 'no items' }] : _state$results;
-  // const results = [
-  //   {
-  //     link: 'https://reddit.com/r/comics/comments/7kqil8/nani_pt_2/',
-  //     fullname: 't3_7kqil8',
-  //     title: 'NANI!?!? Pt. 2',
-  //     score: '6614',
-  //     age: '12761355',
-  //     comments: '131',
-  //     subreddit: 'comics',
-  //     likes: null,
-  //     user: 'shenanigansen',
-  //   },
-  // ];
+      results = _state$results === undefined ? [] : _state$results;
+
 
   return (0, _html2.default)(_templateObject, (0, _list2.default)(results));
 }
@@ -4502,16 +4486,24 @@ var _row = __webpack_require__(47);
 
 var _row2 = _interopRequireDefault(_row);
 
-__webpack_require__(50);
+var _empty = __webpack_require__(53);
+
+var _empty2 = _interopRequireDefault(_empty);
+
+__webpack_require__(56);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = function (items) {
-  return (0, _html2.default)(_templateObject, items.map(function (item) {
+  var empty = (0, _empty2.default)();
+  var rows = items.map(function (item) {
     return (0, _row2.default)(item);
-  }));
+  });
+  var content = items.length > 0 ? rows : empty;
+
+  return (0, _html2.default)(_templateObject, content);
 };
 
 /***/ }),
@@ -4525,17 +4517,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  <li class="row" id="', '">\n    <div class="score-container">\n      ', '\n      <span class="score">', '</span>\n      ', '\n    </div>\n    <a class="info-container" href="', '" target="_blank">\n      <div class="main-info-container">\n        <p class="title">', '</p>\n      </div>\n      <div class="additional-info-container">\n        <span class="comments">\n          <i class="material-icons">mode_comment</i>\n          ', '\n        </span>\n        <span class="subreddit">r/', '</span>\n        <span class="user">u/', '</span>\n      </div>\n    </a>\n    <span class="age">', '</span>\n    <span class="likes">', '</span>\n    <span class="link">', '</span>\n  </li>\n'], ['\n  <li class="row" id="', '">\n    <div class="score-container">\n      ', '\n      <span class="score">', '</span>\n      ', '\n    </div>\n    <a class="info-container" href="', '" target="_blank">\n      <div class="main-info-container">\n        <p class="title">', '</p>\n      </div>\n      <div class="additional-info-container">\n        <span class="comments">\n          <i class="material-icons">mode_comment</i>\n          ', '\n        </span>\n        <span class="subreddit">r/', '</span>\n        <span class="user">u/', '</span>\n      </div>\n    </a>\n    <span class="age">', '</span>\n    <span class="likes">', '</span>\n    <span class="link">', '</span>\n  </li>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  <li class="row" id="', '">\n    <div class="score-container">\n      ', '\n      <span class="score">', '</span>\n      ', '\n    </div>\n    <a class="info-container" href="', '" target="_blank" rel="noopener noreferrer">\n      <div class="main-info-container">\n        <p class="title">', '</p>\n      </div>\n      <div class="additional-info-container">\n        <span class="comments">\n          <i class="material-icons">mode_comment</i>\n          ', '\n        </span>\n        <span class="subreddit">r/', '</span>\n        <span class="user">u/', '</span>\n      </div>\n    </a>\n    <span class="age">', '</span>\n    <span class="likes">', '</span>\n    <span class="link">', '</span>\n  </li>\n'], ['\n  <li class="row" id="', '">\n    <div class="score-container">\n      ', '\n      <span class="score">', '</span>\n      ', '\n    </div>\n    <a class="info-container" href="', '" target="_blank" rel="noopener noreferrer">\n      <div class="main-info-container">\n        <p class="title">', '</p>\n      </div>\n      <div class="additional-info-container">\n        <span class="comments">\n          <i class="material-icons">mode_comment</i>\n          ', '\n        </span>\n        <span class="subreddit">r/', '</span>\n        <span class="user">u/', '</span>\n      </div>\n    </a>\n    <span class="age">', '</span>\n    <span class="likes">', '</span>\n    <span class="link">', '</span>\n  </li>\n']);
 
 var _html = __webpack_require__(3);
 
 var _html2 = _interopRequireDefault(_html);
 
-var _arrow = __webpack_require__(90);
+var _arrow = __webpack_require__(48);
 
 var _arrow2 = _interopRequireDefault(_arrow);
 
-__webpack_require__(48);
+__webpack_require__(51);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4558,125 +4550,118 @@ exports.default = function (_ref) {
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(49);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  border-bottom: 2px solid var(--medium-gray);\n  font-size: 0.9em;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row .link,\n.row .age {\n  display: none;\n}\n\n.row .comments {\n  color: var(--yellow);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row;\n          flex-flow: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row .comments .material-icons {\n  font-size: 15px;\n  margin: 0 5px 0 0;\n}\n\n.row .score {\n  /* color: var(--green); */\n  margin: var(--half-margin) 0 var(--half-margin) 0;\n}\n.row .subreddit {\n  color: var(--light-blue);\n  display: block;\n}\n.row .title {\n  width: 100%;\n  margin: 0 0 var(--half-margin) 0;\n  display: block;\n}\n\n.row .user {\n  color: var(--magenta);\n}\n\n.row .score-container {\n  width: 60px;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.row .info-container {\n  width: calc(100% - 30px);\n  padding: var(--half-margin);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  color: var(--white);\n  text-decoration: none;\n  font-size: 1em;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding-left: var(--half-margin);\n  border-left: 2px solid var(--medium-gray);\n}\n\n.row .main-info-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n}\n\n.row .additional-info-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row;\n          flex-flow: row;\n  font-size: 0.9em;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n\n.row .additional-info-container > *:not(:last-child) {\n  margin-right: var(--half-margin);\n}\n\n.row .additional-info-container:last-child {\n  margin-right: 0;\n}\n\n.row .arrow.up {\n  border-bottom-color: var(--medium-gray);\n}\n\n.row .arrow.down {\n  border-top-color: var(--medium-gray);\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(51);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".list {\n  width: var(--popup-width);\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  <header id="header">\n    <div class="wrapper">\n      <h1>busca</h1>\n      ', '\n    </div>\n  </header>\n'], ['\n  <header id="header">\n    <div class="wrapper">\n      <h1>busca</h1>\n      ', '\n    </div>\n  </header>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n    <div class="arrow ', '"></div>\n'], ['\n    <div class="arrow ', '"></div>\n']);
 
 var _html = __webpack_require__(3);
 
 var _html2 = _interopRequireDefault(_html);
 
-var _materialButton = __webpack_require__(53);
-
-var _materialButton2 = _interopRequireDefault(_materialButton);
-
-__webpack_require__(56);
+__webpack_require__(49);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-exports.default = function () {
-  return (0, _html2.default)(_templateObject, (0, _materialButton2.default)('settings', function () {
-    // e.preventdefault();
-    // browser.runtime.openoptionspage();
-  }));
+exports.default = function (direction) {
+    return (0, _html2.default)(_templateObject, direction);
 };
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(50);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".arrow.up {\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n\n  border-bottom: 10px solid white;\n}\n\n.arrow.down {\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n\n  border-top: 10px solid white;\n}\n\n.arrow.right {\n  width: 0;\n  height: 0;\n  border-top: 10px solid transparent;\n  border-bottom: 10px solid transparent;\n\n  border-left: 10px solid white;\n}\n\n.arrow.left {\n  width: 0;\n  height: 0;\n  border-top: 10px solid transparent;\n  border-bottom: 10px solid transparent;\n\n  border-right: 10px solid white;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(52);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  border-bottom: 2px solid var(--medium-gray);\n  font-size: 0.9em;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row .link,\n.row .age {\n  display: none;\n}\n\n.row .comments {\n  color: var(--yellow);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row;\n          flex-flow: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row .comments .material-icons {\n  font-size: 15px;\n  margin: 0 5px 0 0;\n}\n\n.row .score {\n  margin: calc(var(--half-margin)/2) 0 calc(var(--half-margin)/2) 0;\n}\n.row .subreddit {\n  color: var(--light-blue);\n  display: block;\n}\n.row .title {\n  width: 100%;\n  margin: 0 0 var(--half-margin) 0;\n  display: block;\n}\n\n.row .user {\n  color: var(--magenta);\n}\n\n.row .score-container {\n  width: 60px;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.row .info-container {\n  width: calc(100% - 30px);\n  padding: var(--half-margin);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  color: var(--white);\n  text-decoration: none;\n  font-size: 1em;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding-left: var(--half-margin);\n  border-left: 2px solid var(--medium-gray);\n}\n\n.row .main-info-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n}\n\n.row .additional-info-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row;\n          flex-flow: row;\n  font-size: 0.9em;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n\n.row .additional-info-container > *:not(:last-child) {\n  margin-right: var(--half-margin);\n}\n\n.row .additional-info-container:last-child {\n  margin-right: 0;\n}\n\n.row .arrow.up {\n  border-bottom-color: var(--medium-gray);\n}\n\n.row .arrow.down {\n  border-top-color: var(--medium-gray);\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 53 */
@@ -4689,7 +4674,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  <a class="material" onclick=', '>\n    <i class="material-icons">', '</i>\n  </a>\n'], ['\n  <a class="material" onclick=', '>\n    <i class="material-icons">', '</i>\n  </a>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  <p class="no-items">\n    nothing found\n  </p>\n'], ['\n  <p class="no-items">\n    nothing found\n  </p>\n']);
 
 var _html = __webpack_require__(3);
 
@@ -4701,8 +4686,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-exports.default = function (icon, onclick) {
-  return (0, _html2.default)(_templateObject, onclick, icon);
+exports.default = function () {
+  return (0, _html2.default)(_templateObject);
 };
 
 /***/ }),
@@ -4745,7 +4730,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".material {\n  color: var(light-gray);\n  cursor: pointer;\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n  margin: 4px 0 0 0;\n}\n\n.material .material-icons {\n  font-size: 20px;\n}\n\n.material:hover {\n  color: var(--light-blue);\n  -webkit-transform: translate(0, -1px);\n          transform: translate(0, -1px);\n  -webkit-box-shadow: var(--box-shadow-2);\n          box-shadow: var(--box-shadow-2);\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -4790,7 +4775,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "#header {\n  background: var(--dark-gray);\n  border-bottom: 2px solid var(--medium-gray);\n  padding: var(--half-margin);\n}\n\n#header .wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
+exports.push([module.i, ".list {\n  width: var(--popup-width);\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n", ""]);
 
 // exports
 
@@ -4806,30 +4791,64 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  <section class="message">\n    <div class="wrapper">\n    ', '\n    </div>\n  </section>\n'], ['\n  <section class="message">\n    <div class="wrapper">\n    ', '\n    </div>\n  </section>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  <header id="header">\n    <div class="wrapper">\n      <h1>busca</h1>\n      ', '\n    </div>\n  </header>\n'], ['\n  <header id="header">\n    <div class="wrapper">\n      <h1>busca</h1>\n      ', '\n    </div>\n  </header>\n']);
 
 var _html = __webpack_require__(3);
 
 var _html2 = _interopRequireDefault(_html);
 
-__webpack_require__(59);
+var _materialButton = __webpack_require__(59);
+
+var _materialButton2 = _interopRequireDefault(_materialButton);
+
+__webpack_require__(62);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-exports.default = function (message) {
-  return (0, _html2.default)(_templateObject, message);
+exports.default = function () {
+  return (0, _html2.default)(_templateObject, (0, _materialButton2.default)('settings', function () {
+    // e.preventdefault();
+    // browser.runtime.openoptionspage();
+  }));
 };
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n  <a class="material" onclick=', '>\n    <i class="material-icons">', '</i>\n  </a>\n'], ['\n  <a class="material" onclick=', '>\n    <i class="material-icons">', '</i>\n  </a>\n']);
+
+var _html = __webpack_require__(3);
+
+var _html2 = _interopRequireDefault(_html);
+
+__webpack_require__(60);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = function (icon, onclick) {
+  return (0, _html2.default)(_templateObject, onclick, icon);
+};
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4854,7 +4873,7 @@ if(false) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -4862,37 +4881,10 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".message {\n  padding: var(--margin);\n}\n\n.message .wrapper {\n  padding: var(--margin);\n  border: 2px solid var(--light-blue);\n}\n", ""]);
+exports.push([module.i, ".material {\n  color: var(light-gray);\n  cursor: pointer;\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n  margin: 4px 0 0 0;\n}\n\n.material .material-icons {\n  font-size: 20px;\n}\n\n.material:hover {\n  color: var(--light-blue);\n  -webkit-transform: translate(0, -1px);\n          transform: translate(0, -1px);\n  -webkit-box-shadow: var(--box-shadow-2);\n          box-shadow: var(--box-shadow-2);\n}\n", ""]);
 
 // exports
 
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['\n  <section class="url">\n    <div class="wrapper">\n    <h2>url: </h2>\n    ', '\n    </div>\n  </header>\n'], ['\n  <section class="url">\n    <div class="wrapper">\n    <h2>url: </h2>\n    ', '\n    </div>\n  </header>\n']);
-
-var _html = __webpack_require__(3);
-
-var _html2 = _interopRequireDefault(_html);
-
-__webpack_require__(62);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = function (url) {
-  return (0, _html2.default)(_templateObject, url);
-};
 
 /***/ }),
 /* 62 */
@@ -4934,13 +4926,85 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".url {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: var(--half-margin);\n  width: 100%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column nowrap;\n          flex-flow: column nowrap;\n}\n", ""]);
+exports.push([module.i, "#header {\n  background: var(--dark-gray);\n  border-bottom: 2px solid var(--medium-gray);\n  padding: var(--half-margin);\n}\n\n#header .wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n  <section class="message">\n    <div class="wrapper">\n    ', '\n    </div>\n  </section>\n'], ['\n  <section class="message">\n    <div class="wrapper">\n    ', '\n    </div>\n  </section>\n']);
+
+var _html = __webpack_require__(3);
+
+var _html2 = _interopRequireDefault(_html);
+
+__webpack_require__(65);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = function (message) {
+  return (0, _html2.default)(_templateObject, message);
+};
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(66);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".message {\n  padding: var(--margin);\n}\n\n.message .wrapper {\n  padding: var(--margin);\n  border: 2px solid var(--light-blue);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4958,7 +5022,7 @@ function restoreOptions(emitter) {
   }
 
   function onError(error) {
-    console.log('Error: ' + error);
+    console.error('Error: ' + error);
   }
 
   var getting = browser.storage.local.get('token');
@@ -4977,11 +5041,6 @@ exports.default = function () {
   mState.token = '';
 
   emitter.on('DOMContentLoaded', function () {
-    getCurrentTabUrl(function (url) {
-      mState.url = url;
-      emitter.emit('render');
-    });
-
     restoreOptions(emitter);
 
     emitter.on('url:update', function (url) {
@@ -4992,9 +5051,9 @@ exports.default = function () {
     emitter.on('token:update', function (token) {
       mState.token = token;
 
-      if (typeof token === 'undefined' || !token) {
-        emitter.emit('message:update', 'no token');
-      }
+      // if (typeof token === 'undefined' || !token) {
+      //   emitter.emit('message:update', 'no token');
+      // }
 
       emitter.emit('render');
     });
@@ -5003,11 +5062,13 @@ exports.default = function () {
       mState.message = message;
       emitter.emit('render');
     });
+
+    emitter.emit('message:update', 'loading ...');
   });
 };
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5019,7 +5080,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _misc = __webpack_require__(12);
 
-var _getResults = __webpack_require__(66);
+var _getResults = __webpack_require__(69);
 
 var _getResults2 = _interopRequireDefault(_getResults);
 
@@ -5036,8 +5097,8 @@ exports.default = function () {
 
   emitter.on('DOMContentLoaded', function () {
     emitter.on('results:got', function (results) {
-      console.log(results);
       mState.results = results;
+      emitter.emit('message:update', results.length > 0 ? '' : 'nothing found');
       emitter.emit('render');
     });
 
@@ -5048,15 +5109,13 @@ exports.default = function () {
         mode: 'cors',
         credentials: 'include'
       }).then(_misc.handleErrors).then(function (response) {
-        console.log(response);
         return response.json();
       }).then(function () {
         return (0, _getResults2.default)(url);
       }).then(function (results) {
         emitter.emit('results:got', results);
-        console.log(results);
       }).catch(function (error) {
-        return console.log(error);
+        return console.error(error);
       });
 
       emitter.emit('render');
@@ -5065,7 +5124,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5092,7 +5151,6 @@ function getEncodedStrings(url) {
 }
 
 function getAllURLVersions(URL) {
-  console.log('allVersion');
   var url = URL;
 
   if (url.indexOf('about:reader?url=') === 0) {
@@ -5148,8 +5206,6 @@ function getAllURLVersions(URL) {
 function handleResponse(jsonData) {
   var now = new Date();
   var timestamp = now.getTime();
-  console.log('Handle Response');
-  console.log(jsonData);
 
   var submissions = jsonData.data.children.map(function (entry) {
     return {
@@ -5169,18 +5225,16 @@ function handleResponse(jsonData) {
 }
 
 function getURLSubmissions(path) {
-  console.log('getURLSubmissions:');
   return fetch(path, { mode: 'cors', credentials: 'include' }).then(_misc.handleErrors).then(function (response) {
     return response.json();
   }).then(function (result) {
     return handleResponse(result);
   }).catch(function (error) {
-    return console.log(error);
+    return console.error(error);
   });
 }
 
 function getAllSubmissions(url) {
-  console.log('getAllSubmissions');
   var redditUrls = getAllURLVersions(url);
   var allPromises = redditUrls.map(function (redditUrl) {
     return getURLSubmissions(redditUrl);
@@ -5195,18 +5249,18 @@ function getAllSubmissions(url) {
 }
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var EventEmitter = __webpack_require__(68).EventEmitter
+var EventEmitter = __webpack_require__(71).EventEmitter
 
-var storage = __webpack_require__(69)
-var logger = __webpack_require__(71)
-var debug = __webpack_require__(74)
-var copy = __webpack_require__(76)
-var help = __webpack_require__(81)
-var log = __webpack_require__(82)
-var getAllRoutes = __webpack_require__(88)
+var storage = __webpack_require__(72)
+var logger = __webpack_require__(74)
+var debug = __webpack_require__(77)
+var copy = __webpack_require__(79)
+var help = __webpack_require__(84)
+var log = __webpack_require__(85)
+var getAllRoutes = __webpack_require__(91)
 
 module.exports = expose
 
@@ -5247,7 +5301,7 @@ function expose () {
 
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -5555,10 +5609,10 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pretty = __webpack_require__(70)
+var pretty = __webpack_require__(73)
 
 module.exports = storage
 
@@ -5599,7 +5653,7 @@ function fmt (num) {
 
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = prettierBytes
@@ -5635,12 +5689,12 @@ function prettierBytes (num) {
 
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var scheduler = __webpack_require__(5)()
 var nanologger = __webpack_require__(8)
-var Hooks = __webpack_require__(72)
+var Hooks = __webpack_require__(75)
 
 module.exports = logger
 
@@ -5725,10 +5779,10 @@ function logger (state, emitter) {
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var onPerformance = __webpack_require__(73)
+var onPerformance = __webpack_require__(76)
 var scheduler = __webpack_require__(5)()
 var assert = __webpack_require__(0)
 
@@ -5872,7 +5926,7 @@ function sumDurations (timings) {
 
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var scheduler = __webpack_require__(5)()
@@ -5936,10 +5990,10 @@ function onPerformance (cb) {
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var onChange = __webpack_require__(75)
+var onChange = __webpack_require__(78)
 var nanologger = __webpack_require__(8)
 var assert = __webpack_require__(0)
 
@@ -5981,7 +6035,7 @@ function debug (state, emitter, app, localEmitter) {
 
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assert = __webpack_require__(0)
@@ -6022,11 +6076,11 @@ function strip (str) {
 
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var stateCopy = __webpack_require__(77)
-var pluck = __webpack_require__(80)
+var stateCopy = __webpack_require__(80)
+var pluck = __webpack_require__(83)
 
 module.exports = copy
 
@@ -6042,11 +6096,11 @@ function copy (state) {
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fastSafeStringify = __webpack_require__(78)
-var copy = __webpack_require__(79)
+var fastSafeStringify = __webpack_require__(81)
+var copy = __webpack_require__(82)
 
 function tryStringify (obj) {
   try {
@@ -6064,7 +6118,7 @@ module.exports = stateCopy
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = stringify
@@ -6128,7 +6182,7 @@ function decirc (val, k, stack, parent) {
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6176,7 +6230,7 @@ module.exports = input => {
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = plucker
@@ -6217,7 +6271,7 @@ function pluck(path) {
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = help
@@ -6250,14 +6304,14 @@ function print (cmd, desc) {
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var removeItems = __webpack_require__(11)
 var scheduler = __webpack_require__(5)()
 var nanologger = __webpack_require__(8)
 var _log = nanologger('choo')
-var clone = __webpack_require__(83)
+var clone = __webpack_require__(86)
 
 var MAX_HISTORY_LENGTH = 150   // How many items we should keep around
 
@@ -6330,7 +6384,7 @@ function log (state, emitter, app, localEmitter) {
 
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var clone = (function() {
@@ -6585,10 +6639,10 @@ if (typeof module === 'object' && module.exports) {
   module.exports = clone;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(84).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87).Buffer))
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6602,9 +6656,9 @@ if (typeof module === 'object' && module.exports) {
 
 
 
-var base64 = __webpack_require__(85)
-var ieee754 = __webpack_require__(86)
-var isArray = __webpack_require__(87)
+var base64 = __webpack_require__(88)
+var ieee754 = __webpack_require__(89)
+var isArray = __webpack_require__(90)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -8385,7 +8439,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8506,7 +8560,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -8596,7 +8650,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -8607,7 +8661,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assert = __webpack_require__(0)
@@ -8645,79 +8699,6 @@ function getAllRoutes (router) {
   var tree = trie.trie
   return transform(tree)
 }
-
-
-/***/ }),
-/* 89 */,
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['\n    <div class="arrow ', '"></div>\n'], ['\n    <div class="arrow ', '"></div>\n']);
-
-var _html = __webpack_require__(3);
-
-var _html2 = _interopRequireDefault(_html);
-
-__webpack_require__(91);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = function (direction) {
-    return (0, _html2.default)(_templateObject, direction);
-};
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(92);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--0-1!../../../node_modules/postcss-loader/lib/index.js!./style.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".arrow.up {\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n\n  border-bottom: 10px solid white;\n}\n\n.arrow.down {\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n\n  border-top: 10px solid white;\n}\n\n.arrow.right {\n  width: 0;\n  height: 0;\n  border-top: 10px solid transparent;\n  border-bottom: 10px solid transparent;\n\n  border-left: 10px solid white;\n}\n\n.arrow.left {\n  width: 0;\n  height: 0;\n  border-top: 10px solid transparent;\n  border-bottom: 10px solid transparent;\n\n  border-right: 10px solid white;\n}\n", ""]);
-
-// exports
 
 
 /***/ })
