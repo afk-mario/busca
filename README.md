@@ -13,3 +13,21 @@ Inspired by [Reddit Submission Finder](https://addons.mozilla.org/en-US/firefox/
 # Screenshot
 
 ![Screenshot](https://github.com/afk-mcz/busca.afk/blob/master/screenshots/screenshot-1.png?raw=true)
+
+# Running and building from source
+
+Currently using webpack and web-ext to build the addon, if you want to try it yourself run
+
+`yarn install` or `npm install`
+
+To start the develpment process run:
+
+`yarn start:dev` or `npm run start:dev`
+
+`yarn start:fox` or `npm run start:fox`
+
+To build the addon run:
+
+`yarn build:prod` or `npm run build:prod`
+
+`yarn build:fox` or `npm run build:fox`
