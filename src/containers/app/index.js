@@ -14,8 +14,8 @@ export default function app(state) {
 
   return html`
     <body>
-      ${Header(url)}
       ${content}
+      ${Header(url)}
     </body>
   `;
 }

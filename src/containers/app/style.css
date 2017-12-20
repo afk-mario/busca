@@ -10,6 +10,7 @@ body {
   min-width: var(--popup-width);
   background: var(--dark-gray);
   color: var(--light-gray);
+  overflow-x: hidden;
 }
 
 h1 {
