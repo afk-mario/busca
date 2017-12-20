@@ -1,7 +1,7 @@
 # busca
 
 <p align="center">
-  <img src="https://github.com/afk-mcz/busca.afk/blob/master/dist/img/128icon_dark.png" alt="Logo"/>
+  <img src="https://github.com/afk-mcz/busca.afk/blob/master/dist/img/128icon_dark.svg" alt="Logo"/>
 </p>
 
 A small web-extension to search the current tab on reddit.
