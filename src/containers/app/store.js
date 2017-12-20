@@ -1,17 +1,3 @@
-function restoreOptions(emitter) {
-  function setCurrentChoice(result) {
-    const { token = '' } = result;
-    emitter.emit('token:update', token);
-  }
-
-  function onError(error) {
-    console.error(`Error: ${error}`);
-  }
-
-  const getting = browser.storage.local.get('token');
-  getting.then(setCurrentChoice, onError);
-}
-
 export default (
   state = {
     link: '',
@@ -24,7 +10,7 @@ export default (
   mState.token = '';
 
   emitter.on('DOMContentLoaded', () => {
-    restoreOptions(emitter);
+    // restoreOptions(emitter);
 
     emitter.on('url:update', url => {
       mState.url = url;

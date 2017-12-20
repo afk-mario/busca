@@ -108,3 +108,5 @@ jspm_packages
 key.pem
 
 .env
+
+web-ext-artifacts

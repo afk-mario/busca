@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: { search: './src/search.js', options: './src/options.js' },
+  entry: { search: './src/search.js' },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist/'),

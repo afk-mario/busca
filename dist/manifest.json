@@ -1,8 +1,15 @@
 {
+  "applications": {
+    "gecko": {
+      "id": "busca@ellugar.co",
+      "strict_min_version": "42.0"
+    }
+  },
   "manifest_version": 2,
   "name": "busca.afk",
   "description": "busca.afk extension",
-  "version": "1.0",
+  "author": "Mario Carballo Zama",
+  "version": "1.0.6",
   "icons": {
     "16": "img/16icon_dark.png",
     "19": "img/19icon_dark.png",
@@ -16,14 +23,5 @@
     "default_icon": "img/512icon_light.svg",
     "default_popup": "popup.html"
   },
-  "options_ui": {
-    "page": "options.html"
-  },
-  "permissions": [
-    "*://*.reddit.com/*",
-    "activeTab",
-    "tabs",
-    "storage",
-    "https://ajax.googleapis.com/"
-  ]
+  "permissions": ["https://www.reddit.com/", "webRequest", "tabs", "storage"]
 }

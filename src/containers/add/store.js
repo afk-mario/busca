@@ -1,19 +1,5 @@
 import { getCurrentTabUrl } from '../../lib/misc';
 
-function restoreOptions(emitter) {
-  function setCurrentChoice(result) {
-    const { token = '' } = result;
-    emitter.emit('token:update', token);
-  }
-
-  function onError(error) {
-    console.log(`Error: ${error}`);
-  }
-
-  const getting = browser.storage.local.get('token');
-  getting.then(setCurrentChoice, onError);
-}
-
 export default (
   state = {
     link: '',
@@ -33,7 +19,7 @@ export default (
       emitter.emit('render');
     });
 
-    restoreOptions(emitter);
+    // restoreOptions(emitter);
 
     emitter.on('url:update', url => {
       mState.url = url;

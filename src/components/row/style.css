@@ -69,11 +69,12 @@
 
 .row .additional-info-container {
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   font-size: 0.9em;
   width: 100%;
   align-items: center;
   justify-content: flex-start;
+  line-height: 1.6em;
 }
 
 .row .additional-info-container > *:not(:last-child) {
