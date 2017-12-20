@@ -1,6 +1,6 @@
 #header {
   background: var(--dark-gray);
-  border-bottom: 2px solid var(--medium-gray);
+  border-top: 2px solid var(--medium-gray);
   padding: var(--half-margin);
 }
 
