@@ -52,6 +52,9 @@ function getAllURLVersions(URL) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
 
+  [url] = url.split('?');
+  console.log(url);
+
   const urls = constructUrls(url);
 
   const result = urls.map(item => {

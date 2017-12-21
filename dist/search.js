@@ -5193,6 +5193,14 @@ function getAllURLVersions(URL) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
 
+  var _url$split3 = url.split('?');
+
+  var _url$split4 = _slicedToArray(_url$split3, 1);
+
+  url = _url$split4[0];
+
+  console.log(url);
+
   var urls = constructUrls(url);
 
   var result = urls.map(function (item) {
