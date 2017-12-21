@@ -11,7 +11,8 @@
 }
 
 .row .link,
-.row .age {
+.row .age,
+.row .likes {
   display: none;
 }
 

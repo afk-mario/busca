@@ -1,6 +1,6 @@
 {
   "name": "busca.afk",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "busca.afk extension to search links on reddit or more",
   "main": "js/script.js",
   "scripts": {
