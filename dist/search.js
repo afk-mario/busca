@@ -1622,6 +1622,7 @@ exports.sortByScore = sortByScore;
 exports.handleErrors = handleErrors;
 exports.parseTags = parseTags;
 exports.getCurrentTabUrl = getCurrentTabUrl;
+exports.removeDuplicatesBy = removeDuplicatesBy;
 function restoreOptions(emitter) {
   function setCurrentChoice(result) {
     var _result$token = result.token,
@@ -1678,6 +1679,16 @@ function getCurrentTabUrl(callback) {
     // console.assert(typeof url == 'string', 'tab.url should be a string');
 
     callback(url);
+  });
+}
+
+function removeDuplicatesBy(keyFn, array) {
+  var mySet = new Set();
+  return array.filter(function (x) {
+    var key = keyFn(x);
+    var isNew = !mySet.has(key);
+    if (isNew) mySet.add(key);
+    return isNew;
   });
 }
 
@@ -5112,7 +5123,11 @@ exports.default = function () {
       }).then(function () {
         return (0, _getResults2.default)(url);
       }).then(function (results) {
-        emitter.emit('results:got', results);
+        var filtered = (0, _misc.removeDuplicatesBy)(function (x) {
+          return x.fullname;
+        }, results);
+        var sorted = filtered.sort(_misc.sortByScore);
+        emitter.emit('results:got', sorted);
       }).catch(function (error) {
         return console.error(error);
       });
@@ -5188,10 +5203,13 @@ function constructUrls(url) {
 
 function getAllURLVersions(URL) {
   var url = URL;
+
   // remove firefox reader
   if (url.indexOf('about:reader?url=') === 0) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
+
+  // remove query string
 
   var _url$split3 = url.split('?');
 
@@ -5202,7 +5220,6 @@ function getAllURLVersions(URL) {
   console.log(url);
 
   var urls = constructUrls(url);
-
   var result = urls.map(function (item) {
     var query = encodeURIComponent(item);
     var redditUrl = 'https://www.reddit.com/api/info.json?url=' + query;
@@ -5253,9 +5270,7 @@ function getAllSubmissions(url) {
 
   // flatten the array
   return Promise.all(allPromises).then(function (results) {
-    return (0, _misc.flatten)(results).filter(function (el, i, a) {
-      return i === a.indexOf(el);
-    }).sort(_misc.sortByScore);
+    return (0, _misc.flatten)(results);
   });
 }
 

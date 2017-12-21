@@ -1,4 +1,9 @@
-import { getCurrentTabUrl, handleErrors } from '../../lib/misc';
+import {
+  getCurrentTabUrl,
+  handleErrors,
+  sortByScore,
+  removeDuplicatesBy,
+} from '../../lib/misc';
 import getAllSubmissions from '../../containers/results/getResults';
 
 export default (
@@ -28,7 +33,9 @@ export default (
         .then(response => response.json())
         .then(() => getAllSubmissions(url))
         .then(results => {
-          emitter.emit('results:got', results);
+          const filtered = removeDuplicatesBy(x => x.fullname, results);
+          const sorted = filtered.sort(sortByScore);
+          emitter.emit('results:got', sorted);
         })
         .catch(error => console.error(error));
 

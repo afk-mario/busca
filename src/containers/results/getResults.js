@@ -1,5 +1,10 @@
 // import Uri from 'urijs';
-import { handleErrors, flatten, sortByScore } from '../../lib/misc';
+import {
+  handleErrors,
+  flatten,
+  sortByScore,
+  removeDuplicatesBy,
+} from '../../lib/misc';
 
 function getYoutubeURLs(url) {
   let gotVidId = false;
@@ -47,16 +52,17 @@ function constructUrls(url) {
 
 function getAllURLVersions(URL) {
   let url = URL;
+
   // remove firefox reader
   if (url.indexOf('about:reader?url=') === 0) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
 
+  // remove query string
   [url] = url.split('?');
   console.log(url);
 
   const urls = constructUrls(url);
-
   const result = urls.map(item => {
     const query = encodeURIComponent(item);
     const redditUrl = `https://www.reddit.com/api/info.json?url=${query}`;
@@ -100,9 +106,5 @@ export default function getAllSubmissions(url) {
   const allPromises = redditUrls.map(redditUrl => getURLSubmissions(redditUrl));
 
   // flatten the array
-  return Promise.all(allPromises).then(results =>
-    flatten(results)
-      .filter((el, i, a) => i === a.indexOf(el))
-      .sort(sortByScore)
-  );
+  return Promise.all(allPromises).then(results => flatten(results));
 }
