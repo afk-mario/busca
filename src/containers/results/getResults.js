@@ -13,7 +13,15 @@ function getYoutubeURLs(url) {
     if (ampersandPosition !== -1) {
       videoId = videoId.substring(0, ampersandPosition);
     }
+
+    // some youtube id's contain a dash at the start and reddit search interprets that as NOT
+    // workaround is to search without the dash in the id
+    if (videoId.indexOf('-') === 0) {
+      videoId = videoId.substring(1);
+    }
   }
+
+  console.log(`id: ${videoId}`);
 
   if (gotVidId) {
     const prefixes = [
@@ -31,14 +39,21 @@ function getYoutubeURLs(url) {
   return urls;
 }
 
-function constructUrls(url) {
+function constructUrls(URL) {
+  let url = URL;
   if (url.indexOf('http') === -1) {
     return [];
   }
+
   let urls = [url];
   if (url.indexOf('youtube.com') !== -1) {
     urls = urls.concat(getYoutubeURLs(url));
+  } else {
+    // remove query string
+    [url] = url.split('?');
+    console.log(url);
   }
+
   if (url.startsWith('https')) {
     urls = urls.concat(url.replace('https', 'http'));
   }
@@ -52,10 +67,6 @@ function getAllURLVersions(URL) {
   if (url.indexOf('about:reader?url=') === 0) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
-
-  // remove query string
-  [url] = url.split('?');
-  console.log(url);
 
   const urls = constructUrls(url);
   const result = urls.map(item => {
