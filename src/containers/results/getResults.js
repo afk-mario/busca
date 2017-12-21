@@ -1,10 +1,5 @@
 // import Uri from 'urijs';
-import {
-  handleErrors,
-  flatten,
-  sortByScore,
-  removeDuplicatesBy,
-} from '../../lib/misc';
+import { handleErrors, flatten } from '../../lib/misc';
 
 function getYoutubeURLs(url) {
   let gotVidId = false;
