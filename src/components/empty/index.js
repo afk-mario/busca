@@ -4,6 +4,5 @@ import './style.css';
 
 export default () => html`
   <p class="no-items">
-    nothing found
   </p>
 `;

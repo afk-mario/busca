@@ -4,11 +4,9 @@
   "description": "busca.afk extension to search links on reddit or more",
   "main": "js/script.js",
   "scripts": {
-    "start:fox":
-      "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
+    "start:fox": "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
     "test": "eslint src/**/*.js && web-ext lint -s dist",
-    "build:chrome":
-      "crx pack dist -o build/ligo.crx && web-ext build -s dist -a build",
+    "build:chrome": "crx pack dist -o build/ligo.crx && web-ext build -s dist -a build",
     "build:fox": "web-ext build -s dist --overwrite-dest",
     "sign:fox": "env-cmd ./.env web-ext sign",
     "build:dev": "webpack --watch --progress",
@@ -16,7 +14,13 @@
     "precommit": "lint-staged"
   },
   "repository": "https://github.com/afk-mcz/reddit-submission-finder",
-  "keywords": ["extension", "arlefreak", "afk", "ligo", "link"],
+  "keywords": [
+    "extension",
+    "arlefreak",
+    "afk",
+    "ligo",
+    "link"
+  ],
   "author": "AFK",
   "license": "MIT",
   "bugs": {
@@ -59,6 +63,7 @@
     "postcss-loader": "^2.0.9",
     "precss": "^2.0.0",
     "style-loader": "^0.19.0",
+    "urijs": "^1.19.0",
     "webpack": "^3.4.1"
   },
   "peerDependencies": {}

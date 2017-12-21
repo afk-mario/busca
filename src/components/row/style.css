@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.row:last-child {
+  border-bottom: 0;
+}
+
 .row .link,
 .row .age {
   display: none;

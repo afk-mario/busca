@@ -1,77 +1,67 @@
+// import Uri from 'urijs';
 import { handleErrors, flatten, sortByScore } from '../../lib/misc';
 
-function getEncodedStrings(url) {
-  const arr = [];
-  const urlWithSlash = `${url}/`;
+function getYoutubeURLs(url) {
+  let gotVidId = false;
+  let videoId = '';
+  let urls = [];
+  if (url.indexOf('v=') !== -1) {
+    [, videoId] = url.split('v=');
+    if (videoId !== '') gotVidId = true;
+    const ampersandPosition = videoId.indexOf('&');
 
-  const s = `https://www.reddit.com/api/info.json?url=${encodeURIComponent(
-    url
-  )}`;
-  const sWithSlash = `https://www.reddit.com/api/info.json?url=${encodeURIComponent(
-    urlWithSlash
-  )}`;
+    if (ampersandPosition !== -1) {
+      videoId = videoId.substring(0, ampersandPosition);
+    }
+  }
 
-  arr.push(s);
-  arr.push(sWithSlash);
+  if (gotVidId) {
+    const prefixes = [
+      'http://www.youtube.com/watch?v=',
+      'https://www.youtube.com/watch?v=',
+      'http://www.youtu.be/',
+      'https://www.youtu.be/',
+    ];
 
-  return arr;
+    urls = prefixes
+      .map(prefix => `${prefix}${videoId}`)
+      .filter(item => item !== url);
+  }
+
+  return urls;
+}
+
+function constructUrls(url) {
+  if (url.indexOf('http') === -1) {
+    return [];
+  }
+  let urls = [url];
+  if (url.indexOf('youtube.com') !== -1) {
+    urls = urls.concat(getYoutubeURLs(url));
+  }
+  if (url.startsWith('https')) {
+    urls = urls.concat(url.replace('https', 'http'));
+  }
+  return urls;
 }
 
 function getAllURLVersions(URL) {
   let url = URL;
-
+  // remove firefox reader
   if (url.indexOf('about:reader?url=') === 0) {
     url = decodeURIComponent(url.substring('about:reader?url='.length));
   }
 
-  const host = url.split('/')[2];
-  let result = [];
+  const urls = constructUrls(url);
 
-  if (
-    (host === 'youtube.com' || host === 'www.youtube.com') &&
-    url.split('/')[3].indexOf('watch?') === 0
-  ) {
-    let youtubeID = (() => {
-      const query = url.substring(url.indexOf('?') + 1);
-      const parameters = query.split('&');
-      for (let i = 0; i < parameters.length; i += 1) {
-        const pair = parameters[i].split('=');
-        if (pair[0] === 'v') {
-          return pair[1];
-        }
-      }
-      return '';
-    })();
+  const result = urls.map(item => {
+    const query = encodeURIComponent(item);
+    const redditUrl = `https://www.reddit.com/api/info.json?url=${query}`;
+    return redditUrl;
+  });
 
-    // some youtube id's contain a dash at the start and reddit search interprets that as NOT
-    // workaround is to search without the dash in the id
-    if (youtubeID.indexOf('-') === 0) {
-      youtubeID = youtubeID.substring(1);
-    }
+  console.log(result);
 
-    let s = encodeURIComponent(
-      `(url:${youtubeID}) (site:youtube.com OR site:youtu.be)`
-    );
-    s = `https://api.reddit.com/search.json?q=${s}`;
-    result.push(s);
-  } else {
-    let withoutHttp = '';
-    if (url.slice(-1) === '/') {
-      url = url.substring(0, url.length - 1);
-    }
-
-    result = result.concat(getEncodedStrings(url));
-
-    if (url.indexOf('https') === 0) {
-      withoutHttp = url.substring(8);
-    } else if (url.indexOf('http') === 0) {
-      withoutHttp = url.substring(7);
-    } else {
-      withoutHttp = url;
-    }
-
-    result = result.concat(getEncodedStrings(withoutHttp));
-  }
   return result;
 }
 
