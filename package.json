@@ -1,17 +1,19 @@
 {
   "name": "busca.afk",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "busca.afk extension to search links on reddit or more",
   "main": "js/script.js",
   "scripts": {
-    "start:fox":
-      "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
+    "start":
+      "web-ext run -s dist --browser-console --firefox=firefox-developer-edition --verbose --pre-install",
+    "start:macos":
+      "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin --pre-install",
     "test": "eslint src/**/*.js && web-ext lint -s dist",
+    "build": "webpack --watch --progress",
     "build:chrome":
       "crx pack dist -o build/ligo.crx && web-ext build -s dist -a build",
-    "build:fox": "web-ext build -s dist --overwrite-dest",
-    "sign:fox": "env-cmd ./.env web-ext sign",
-    "build:dev": "webpack --watch --progress",
+    "build:fox": "webpack -p && web-ext build -s dist --overwrite-dest",
+    "sign:fox": "env-cmd ./.env web-ext -s dist sign",
     "build:prod": "webpack -p",
     "precommit": "lint-staged"
   },
@@ -42,16 +44,21 @@
     "prettier": "1.9.1"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
     "archiver": "^2.1.0",
     "autoprefixer": "^7.2.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "choo": "^6.6.0",
     "choo-devtools": "^2.2.0",
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "env-cmd": "^7.0.0",
@@ -60,6 +67,7 @@
     "precss": "^2.0.0",
     "style-loader": "^0.19.0",
     "urijs": "^1.19.0",
+    "web-ext": "^2.9.3",
     "webpack": "^3.4.1"
   },
   "peerDependencies": {}

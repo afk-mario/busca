@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box;
   font-family: var(--font);
+  scrollbar-color: var(--medium-gray) var(--black);
+  scrollbar-width: thin;
 }
 
 html,

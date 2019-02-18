@@ -1,4 +1,6 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -37,4 +39,14 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new CleanWebpackPlugin('dist'),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, './src/public'),
+        to: path.resolve(__dirname, 'dist'),
+      },
+    ]),
+  ],
 };

@@ -107,6 +107,8 @@ jspm_packages
 .web-ext-artifacts
 key.pem
 
-.env
+.env*
+!.env-template
 
 web-ext-artifacts
+dist

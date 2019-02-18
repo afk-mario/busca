@@ -16,18 +16,24 @@ Inspired by [Reddit Submission Finder](https://addons.mozilla.org/en-US/firefox/
 
 # Running and building from source
 
-Currently using webpack and web-ext to build the addon, if you want to try it yourself run
+Currently using webpack and web-ext to build the addon, if you want to try it yourself follow this steps:
+
+To install the project dependencies run:
 
 `yarn install` or `npm install`
 
-To start the develpment process run:
+To start webpack on dev mode run:
 
-`yarn start:dev` or `npm run start:dev`
+`yarn start` or `npm run start`
 
-`yarn start:fox` or `npm run start:fox`
+To run the addon on firefox run:
 
-To build the addon run:
+`web-ext run -s dist --firefox=PATH_TO_YOUR_FIREFOX_BIN --pre-install`
+
+To build the production webpack bundle run:
 
 `yarn build:prod` or `npm run build:prod`
+
+To build the addon zip run:
 
 `yarn build:fox` or `npm run build:fox`
