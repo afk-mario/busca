@@ -22,9 +22,9 @@
   "author": "AFK",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/afk-mcz/reddit-submission-finder/issues"
+    "url": "https://github.com/afk-mcz/busca/issues"
   },
-  "homepage": "https://github.com/afk-mcz/reddit-submission-finder#readme",
+  "homepage": "https://github.com/afk-mcz/busca",
   "lint-staged": {
     "src/**/*.{js,json,css}": [
       "prettier --single-quote --trailing-comma es5 --write",
