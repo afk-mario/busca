@@ -73,32 +73,35 @@ function getAllURLVersions(URL) {
     return redditUrl;
   });
 
-  // console.log(result);
-
   return result;
 }
 
-function handleResponse(jsonData) {
+function handleResponse(response) {
   const now = new Date();
   const timestamp = now.getTime();
+  const {
+    data: { children },
+  } = response;
+  console.log(children);
 
-  const submissions = jsonData.data.children.map(entry => ({
-    fullname: entry.data.name,
-    link: `https://reddit.com${entry.data.permalink}`,
-    title: entry.data.title,
-    score: entry.data.score.toString(),
-    age: timestamp - entry.data.created_utc * 1000,
-    comments: entry.data.num_comments,
-    subreddit: entry.data.subreddit,
-    likes: entry.data.likes,
-    user: entry.data.author,
+  const submissions = children.map(({ data }) => ({
+    fullname: data.name,
+    link: `https://reddit.com${data.permalink}`,
+    title: data.title,
+    score: data.score.toString(),
+    age: timestamp - data.created_utc * 1000,
+    date: new Date(data.created_utc * 1000),
+    comments: data.num_comments,
+    subreddit: data.subreddit,
+    likes: data.likes,
+    user: data.author,
   }));
 
   return submissions;
 }
 
 function getURLSubmissions(path) {
-  return fetch(path, { mode: 'cors', credentials: 'include' })
+  return fetch(path)
     .then(handleErrors)
     .then(response => response.json())
     .then(result => handleResponse(result))

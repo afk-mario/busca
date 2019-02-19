@@ -1,1 +1,42 @@
+#footer {
+  color: var(--white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
+  height: var(--footer-height);
+  background: var(--dark-gray);
+  border-top: 2px solid var(--medium-gray);
+  padding: var(--half-margin);
+
+  max-width: var(--popup-width);
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#footer .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#footer a {
+  color: currentcolor;
+  transition: color 0.2s ease;
+  width: 20px;
+}
+
+#footer a:hover {
+  color: var(--light-blue);
+}
+
+#footer svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}

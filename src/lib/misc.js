@@ -1,4 +1,4 @@
-import { ORDER_OPTIONS } from '~lib/constants';
+import { ORDER_OPTIONS, DEFAULT_SEARCH_URL } from '~lib/constants';
 
 export function restoreOptions(emitter) {
   function setCurrentChoice(result) {
@@ -74,12 +74,14 @@ export function getCurrentTabUrl(callback) {
     currentWindow: true,
   };
 
-  chrome.tabs.query(queryInfo, tabs => {
-    const tab = tabs[0];
-    const { url } = tab;
-    // console.assert(typeof url == 'string', 'tab.url should be a string');
-    callback(url);
-  });
+  if (!chrome.tabs) callback(DEFAULT_SEARCH_URL);
+  else
+    chrome.tabs.query(queryInfo, tabs => {
+      const tab = tabs[0];
+      const { url } = tab;
+      // console.assert(typeof url == 'string', 'tab.url should be a string');
+      callback(url);
+    });
 }
 
 export function removeDuplicatesBy(keyFn, array) {

@@ -2,7 +2,7 @@ import html from 'choo/html';
 
 import Results from '~containers/results';
 
-import Header from '~components/header';
+import Footer from '~components/footer';
 import Message from '~components/message';
 
 import './variables.css';
@@ -16,8 +16,10 @@ export default function app(state, emit) {
 
   return html`
     <body>
-      ${content}
-      ${Header(url)}
+      <main>
+        ${content}
+      </main>
+      ${Footer(url)}
     </body>
   `;
 }

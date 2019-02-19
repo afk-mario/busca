@@ -10,17 +10,17 @@ import './style.css';
 
 const sortbuttons = [
   {
-    label: 'By votes',
+    className: 'votes',
     value: 'VOTES',
-    icon: 'arrow_drop_up',
+    icon: 'unfold_more',
   },
   {
-    label: 'By comments',
+    className: 'comments',
     value: 'COMMENTS',
     icon: 'mode_comment',
   },
   {
-    label: 'By date',
+    className: 'date',
     value: 'DATE',
     icon: 'date_range',
   },
@@ -34,12 +34,13 @@ export default function ResultsList(state, emit) {
   };
 
   return html`
-      <section class="results">
-        ${Sorter({
-          sorters: sortbuttons,
-          onclick,
-        })}
-        ${List(sorted)}
-      </section>
+    <section class="results">
+      ${Sorter({
+        order,
+        sorters: sortbuttons,
+        onclick,
+      })}
+      ${List(sorted)}
+    </section>
   `;
 }

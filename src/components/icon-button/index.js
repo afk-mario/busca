@@ -2,10 +2,13 @@ import html from 'choo/html';
 
 import './style.css';
 
-export default ({ icon, value, label, onclick }) => html`
-      <button onclick=${() => {
-        onclick(value);
-      }}>
-        <i class="material-icons" alt=${label}>${icon}</i>
-      </button>
+export default ({ active, icon, value, className, onclick }) => html`
+  <button
+    class="icon-button ${className} ${active && '-active'}"
+    onclick=${() => {
+      onclick(value);
+    }}
+  >
+    <i class="material-icons">${icon}</i>
+  </button>
 `;

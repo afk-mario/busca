@@ -29,10 +29,7 @@ const store = (
     getCurrentTabUrl(url => {
       mState.url = url;
       // return;
-      fetch('https://www.reddit.com/api/me.json', {
-        mode: 'cors',
-        credentials: 'include',
-      })
+      fetch('https://www.reddit.com/api/me.json')
         .then(handleErrors)
         .then(response => response.json())
         .then(() => getAllSubmissions(url))

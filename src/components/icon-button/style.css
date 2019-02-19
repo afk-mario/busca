@@ -1,1 +1,23 @@
+.icon-button {
+  color: currentcolor;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  padding: 5px;
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+}
 
+.icon-button.-active.votes,
+.icon-button.votes:hover {
+  color: var(--red);
+}
+
+.icon-button.-active.comments,
+.icon-button.comments:hover {
+  color: var(--yellow);
+}
+
+.icon-button.-active.date,
+.icon-button.date:hover {
+  color: var(--light-blue);
+}

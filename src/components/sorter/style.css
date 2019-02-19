@@ -7,8 +7,12 @@
 }
 
 .sort-title {
-  border-right: 2px solid var(--medium-gray);
-  height: 100%;
+  width: var(--side-width);
+
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: column;
+  align-items: center;
 }
 
 .sort-buttons {
@@ -16,11 +20,26 @@
   flex: 1 0 auto;
   flex-flow: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  color: white;
+  border-left: 2px solid var(--medium-gray);
 }
 
 .sort-buttons button {
   background: transparent;
   border-radius: 0;
   border: none;
+}
+
+.sort-buttons .sort-button {
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort-buttons .sort-button:nth-child(2) {
+  border-right: 2px solid var(--medium-gray);
+  border-left: 2px solid var(--medium-gray);
 }

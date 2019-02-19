@@ -2,12 +2,14 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const output = path.resolve(__dirname, 'dist/');
+
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: { search: './src/search.js' },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist/'),
+    path: output,
     sourceMapFilename: '[name].map',
   },
   module: {

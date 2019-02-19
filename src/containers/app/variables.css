@@ -5,16 +5,10 @@
 
   /* sizes */
   --border-division: 2px;
-  --tasks-height: 50px;
-  --mobile-size: 600px;
-
-  --popup-width: 350px;
-
-  /* sizes */
-  --header-height: 50px;
-  --footer-height: 0px;
-  --sidebar-width: 25%;
-  --sidebar-min-width: 320px;
+  --popup-width: 450px;
+  --popup-height: 500px;
+  --side-width: 70px;
+  --footer-height: 50px;
 
   /* colors */
 
@@ -24,9 +18,11 @@
   --medium-gray: #323234;
   --light-gray: #b2b2b2;
   --light-gray: #f2f2f2;
-  --blue: #0080ff;
-  --light-blue: #98d1cf;
+
   --dark-blue: #185869;
+  --light-blue: #98d1cf;
+  --blue: #0080ff;
+
   --red: #c33126;
   --green: #2ab38d;
   --yellow: #f1b731;
