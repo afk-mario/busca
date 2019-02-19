@@ -1,3 +1,5 @@
+import { ORDER_OPTIONS } from '~lib/constants';
+
 export function restoreOptions(emitter) {
   function setCurrentChoice(result) {
     const { token = '' } = result;
@@ -13,11 +15,40 @@ export function restoreOptions(emitter) {
 }
 
 export function sortByScore(a, b) {
-  const scoreA = parseInt(a.score, 10);
-  const scoreB = parseInt(b.score, 10);
-  if (scoreA < scoreB) return 1;
-  if (scoreA > scoreB) return -1;
+  const sortA = a ? parseInt(a.score, 10) : 0;
+  const sortB = b ? parseInt(b.score, 10) : 0;
+  if (sortA < sortB) return 1;
+  if (sortA > sortB) return -1;
   return 0;
+}
+
+export function sortByComments(a, b) {
+  const sortA = a ? parseInt(a.comments, 10) : 0;
+  const sortB = b ? parseInt(b.comments, 10) : 0;
+  if (sortA < sortB) return 1;
+  if (sortA > sortB) return -1;
+  return 0;
+}
+
+export function sortByDate(a, b) {
+  const sortA = a ? parseInt(a.age, 10) : 0;
+  const sortB = b ? parseInt(b.age, 10) : 0;
+  if (sortA < sortB) return 1;
+  if (sortA > sortB) return -1;
+  return 0;
+}
+
+export function getSortedResults(order, results) {
+  switch (order) {
+    case ORDER_OPTIONS[0]:
+      return results.sort(sortByScore);
+    case ORDER_OPTIONS[1]:
+      return results.sort(sortByComments);
+    case ORDER_OPTIONS[2]:
+      return results.sort(sortByDate);
+    default:
+      return results.sort(sortByScore);
+  }
 }
 
 export const flatten = list =>

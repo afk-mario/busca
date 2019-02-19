@@ -1,14 +1,13 @@
-import {
-  getCurrentTabUrl,
-  handleErrors,
-  sortByScore,
-  removeDuplicatesBy,
-} from '../../lib/misc';
-import getAllSubmissions from '../../containers/results/getResults';
+import { getCurrentTabUrl, handleErrors, removeDuplicatesBy } from '~lib/misc';
 
-export default (
+import getAllSubmissions from '~containers/results/getResults';
+
+import { ORDER_OPTIONS } from '~lib/constants';
+
+const store = (
   state = {
     results: [],
+    order: ORDER_OPTIONS[0],
   },
   emitter
 ) => {
@@ -19,6 +18,11 @@ export default (
     emitter.on('results:got', results => {
       mState.results = results;
       emitter.emit('message:update', results.length > 0 ? '' : 'nothing found');
+      emitter.emit('render');
+    });
+
+    emitter.on('order:set', order => {
+      mState.order = order;
       emitter.emit('render');
     });
 
@@ -34,8 +38,7 @@ export default (
         .then(() => getAllSubmissions(url))
         .then(results => {
           const filtered = removeDuplicatesBy(x => x.fullname, results);
-          const sorted = filtered.sort(sortByScore);
-          emitter.emit('results:got', sorted);
+          emitter.emit('results:got', filtered);
         })
         .catch(error => console.error(error));
 
@@ -43,3 +46,5 @@ export default (
     });
   });
 };
+
+export default store;

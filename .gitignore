@@ -112,3 +112,4 @@ key.pem
 
 web-ext-artifacts
 dist
+.tern*

@@ -4,21 +4,25 @@
   "description": "busca.afk extension to search links on reddit or more",
   "main": "js/script.js",
   "scripts": {
-    "start":
-      "web-ext run -s dist --browser-console --firefox=firefox-developer-edition --verbose --pre-install",
-    "start:macos":
-      "web-ext run -s dist --browser-console -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin --pre-install",
-    "test": "eslint src/**/*.js && web-ext lint -s dist",
+    "start": "web-ext run",
+    "start:macos": "web-ext run -p default --firefox=/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
+    "lint": "eslint src/**/*.js",
+    "lint:web": "web-ext lint",
     "build": "webpack --watch --progress",
-    "build:chrome":
-      "crx pack dist -o build/ligo.crx && web-ext build -s dist -a build",
-    "build:fox": "webpack -p && web-ext build -s dist --overwrite-dest",
-    "sign:fox": "env-cmd ./.env web-ext -s dist sign",
+    "build:chrome": "crx pack dist -o build/ligo.crx",
+    "build:fox": "webpack -p && web-ext build",
+    "sign:fox": "env-cmd ./.env web-ext sign",
     "build:prod": "webpack -p",
     "precommit": "lint-staged"
   },
   "repository": "https://github.com/afk-mcz/reddit-submission-finder",
-  "keywords": ["extension", "arlefreak", "afk", "ligo", "link"],
+  "keywords": [
+    "extension",
+    "arlefreak",
+    "afk",
+    "ligo",
+    "link"
+  ],
   "author": "AFK",
   "license": "MIT",
   "bugs": {
@@ -35,6 +39,7 @@
     "crx": "^3.2.1",
     "eslint": "^4.12.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-webpack": "^0.11.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",

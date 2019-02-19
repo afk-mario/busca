@@ -1,0 +1,26 @@
+.sort-list {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--medium-gray);
+}
+
+.sort-title {
+  border-right: 2px solid var(--medium-gray);
+  height: 100%;
+}
+
+.sort-buttons {
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort-buttons button {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}

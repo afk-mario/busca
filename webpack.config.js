@@ -49,4 +49,14 @@ module.exports = {
       },
     ]),
   ],
+
+  resolve: {
+    modules: ['node_modules'],
+    alias: {
+      '~lib': path.resolve('./src/lib/'),
+      '~components': path.resolve('./src/components'),
+      '~containers': path.resolve('./src/containers'),
+      '~public': path.resolve('./src/public'),
+    },
+  },
 };

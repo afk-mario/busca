@@ -21,8 +21,6 @@ function getYoutubeURLs(url) {
     }
   }
 
-  console.log(`id: ${videoId}`);
-
   if (gotVidId) {
     const prefixes = [
       'http://www.youtube.com/watch?v=',
@@ -51,7 +49,7 @@ function constructUrls(URL) {
   } else {
     // remove query string
     [url] = url.split('?');
-    console.log(url);
+    // console.log(url);
   }
 
   if (url.startsWith('https')) {
@@ -75,7 +73,7 @@ function getAllURLVersions(URL) {
     return redditUrl;
   });
 
-  console.log(result);
+  // console.log(result);
 
   return result;
 }

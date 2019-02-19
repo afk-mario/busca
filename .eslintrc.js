@@ -13,4 +13,11 @@ module.exports = {
     Headers: true,
     location: true,
   },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'webpack.config.js',
+      },
+    },
+  },
 };
